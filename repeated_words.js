@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 function generateOutput(contents) {
-  return contents.replace(/____________________/__,'__________________________________');
+  return contents.replace(/\b([a-z_A-Z]\w*)(\s+)\1\b/ig,'<span class repetidos> '$1' </span>'$2'');
 }
 
 function calculate(evt) {
@@ -40,6 +40,6 @@ var entityMap = {
   };
 
 function escapeHtml(string) {
-  return String(string).replace(/_________/g, function (s) {
-    return ____________;
+  return String(string).replace(/[&<>"'\/]/g, function (s) {
+    return entityMap[s];
   });
